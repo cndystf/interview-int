@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 
 export default function App() {
   const [number, setNumber] = useState("");
-  //const [reverse, setReversed] = useState(number);
-  // const [difference, setDifference] = useState(setNumber, setReversed);
   const [reverse, setReversed] = useState("0");
   const [difference, setDifference] = useState("0");
 
@@ -14,15 +12,10 @@ export default function App() {
 
   //note : handleInput() is the default func provided by template
   function handleInput(event) {
-    //event.preventDefault();
-    //setNumber(event.target.value);
     //validasi
     if (event >= 0) {
-      //setNumber(event.replace(".", ""));
       setNumber(event.replace(/[. ,]/g, ""));
     }
-    //setNumber(replace(".", ""));
-    //setNumber({value: number});
   }
 
   function reset(event) {
