@@ -3,40 +3,64 @@ import { useState, useEffect } from "react";
 
 export default function App() {
   const [number, setNumber] = useState("");
-  const [reverse, setReversed] = useState(number);
-  const [difference, setDifference] = useState(setNumber, setReversed);
+  //const [reverse, setReversed] = useState(number);
+  // const [difference, setDifference] = useState(setNumber, setReversed);
+  const [reverse, setReversed] = useState("0");
+  const [difference, setDifference] = useState("0");
 
-  // const numChange = useEffect(()=> {
-  //    setDifference(differenceInput());
+  // const numChange = useEffect(() => {
+  //   setDifference(differenceInput());
   // }, [numChange]);
 
-  function handleNumber(event) {
-    setNumber(event.target.value);
-  }
-
   //note : handleInput() is the default func provided by template
-  function handleInput() {
-    setReversed(reverseInput(number));
-    setDifference(differenceInput(difference));
+  function handleInput(event) {
+    //event.preventDefault();
+    //setNumber(event.target.value);
+    //validasi
+    if (event >= 0) {
+      //setNumber(event.replace(".", ""));
+      setNumber(event.replace(/[. ,]/g, ""));
+    }
+    //setNumber(replace(".", ""));
+    //setNumber({value: number});
   }
 
   function reset(event) {
     event.preventDefault();
     setNumber("");
     setReversed("");
-    setDifference("");
+    setDifference(0);
   }
+
+  function processInput() {
+    let resultReserved =
+      parseInt(number.toString().split("").reverse().join("")) *
+      Math.sign(number);
+
+    let resultDifference = Math.abs(number - resultReserved);
+
+    setReversed(resultReserved);
+    setDifference(resultDifference);
+  }
+
+  // function processInput(event) {
+  //   setReversed(reverseInput(number));
+  //   setDifference(differenceInput(difference));
+  //   //setDifference(numChange);
+  //   event.preventDefault();
+  // }
 
   //reverse
-  function reverseInput(n) {
-    return parseInt(n.toString().split("").reverse().join("")) * Math.sign(n);
-  }
+  // function reverseInput(n) {
+  //   return parseInt(n.toString().split("").reverse().join("")) * Math.sign(n);
+  // }
 
-  function differenceInput() {
-    number;
-    reverse;
-    return parseInt(Math.abs(number - reverse));
-  }
+  //difference
+  // function differenceInput() {
+  //   // number;
+  //   // reverse;
+  //   return parseInt(Math.abs(number - reverse));
+  // }
 
   return (
     <div className="App">
@@ -46,10 +70,10 @@ export default function App() {
           type="number"
           id="number"
           value={number}
-          onChange={handleNumber}
+          onChange={(event) => handleInput(event.target.value)}
           required
         />
-        <button type="submit" onClick={handleInput}>
+        <button type="submit" onClick={processInput}>
           Submit
         </button>
         <button type="reset" onClick={reset}>
