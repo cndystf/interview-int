@@ -36,11 +36,10 @@ export default function App() {
     setDifference(resultDifference);
   }
 
-  // function processInput(event) {
+  // function processInput() {
   //   setReversed(reverseInput(number));
   //   setDifference(differenceInput(difference));
   //   //setDifference(numChange);
-  //   event.preventDefault();
   // }
 
   //reverse
