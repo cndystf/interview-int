@@ -1,5 +1,5 @@
 # interview-int
-Created with CodeSandbox <br /> 
+Created with CodeSandbox <br /> <br />
 [Solved] List of things that made my progress long ~12h -.- :
 1. Separating reverse and different function when it's better to wrap them as one
 2. Too much declaring some variable
